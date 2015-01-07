@@ -1,0 +1,77 @@
+<section >
+	<body ng-app="core">
+		<div form-halign="center" ng-controller="HomeController">
+		  <form name="form" id="form" ng-submit="myForm.submit()">
+		  <!-- {{myForm}} </br> -->
+		  	<div>
+			  	<div class="form-group">
+    				<label for="name">Name:</label>
+				  	<input type="text" id="name" ng-model="myForm.name" ng-minlength="3" ng-maxlength="15">
+			  	</div>
+			    <div class="form-group">
+    				<label for="car"> Car Booked:</label>
+			    	<select ng-model="myForm.car" name="car">
+						<option value="Nissan">Nissan</option>
+				        <option value="Toyota">Toyota</option>
+			     	    <option value="Fiat">Fiat</option>
+					</select>
+				</div>
+				<div class="form-group">
+    				<label for="file">Upload Your Image:</label>
+				  	<input type="file" id="file" name="file" ng-model="myForm.file"  onchange="angular.element(this).scope().getchange()">
+			  	</div>
+				<!-- <input type="button" name="edit" class="btn btn-default" ng-click="save(myForm)" value="Edit"> -->
+				<input type="submit" name="submit" class="btn btn-default" value="Submit Form"> 
+			</div>
+		  </form>
+			<table class="table">
+		        <thead>
+		          <tr>
+		            <th data-halign="right">Customer</th>
+		            <th data-halign="center">Car Booked</th>
+		            <th data-halign="left">Action</th>
+		          </tr>
+		        </thead>
+		        <tbody>
+		          <tr ng-repeat="data in myForms">
+		        	<td>{{data.name}}</td>
+		        	<td>{{data.car}}</td>
+		        	<td>{{data._id}}
+		        		<a class="btn btn-primary" data-ng-click="remove(data._id)">
+			              <i class="glyphicon glyphicon-trash"></i>
+			            </a>
+			            <!-- Open Edit Modal -->
+			            <a class="btn btn-primary" data-ng-click="open(data)">
+						    <i class="glyphicon glyphicon-edit"></i>
+						</a>
+			        </td>
+			      </tr>
+			    </tbody>
+			</table>
+		</div>
+	    <script type="text/ng-template" id="myModalContent.html">
+		    <form name="form" id="form" ng-submit="myForm.submit()">
+			  	<div>
+				  	<div class="modal-header">
+			            <h3 class="modal-title">EDIT MODAL</h3>
+			        </div>
+				  	<div class="form-group">
+						<label for="name">Name:</label>
+					  	<input type="text" id="name" ng-model="myForm.name" ng-minlength="3" ng-maxlength="15">
+				  	</div>
+				    <div class="form-group">
+						<label for="car"> Car Booked:</label>
+				    	<select ng-model="myForm.car" name="car">
+							<option value="Nissan">Nissan</option>
+					        <option value="Toyota">Toyota</option>
+				     	    <option value="Fiat">Fiat</option>
+						</select>
+					</div>
+					<input type="button" name="edit" class="btn btn-default" ng-click="save(myForm)" value="Edit">
+					<input type="button" name="cancel" class="btn btn-default" ng-click="cancel()" value="Cancel">
+					</br>
+				</div>
+			</form>
+		</script>
+	</body>
+</section>
